@@ -132,7 +132,7 @@ Thirteen read-only tools, covering the catalogue and its contents:
 
 ## About
 
-Built by [Matt Miles](https://github.com/matjmiles) in collaboration with Royce
+Built by [Mat Miles](https://github.com/matjmiles) in collaboration with Royce
 Kimmons, who created and maintains EdTech Books.
 
 This repository holds the installer and its documentation. The server is built
