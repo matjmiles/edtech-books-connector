@@ -61,20 +61,20 @@ A window opens and lists what it set up. It waits for you — press **Enter** to
 close it. If it seems to sit there doing nothing, that is the window waiting,
 not a freeze.
 
-### 4. Quit Claude completely, then reopen it
+### 4. Nothing — Claude restarts itself
 
-Closing the Claude window is **not** enough. It keeps running in the background.
+If Claude was open, the installer closes it before changing its settings and
+opens it again when it is done. You do not have to quit anything.
 
-**On Windows,** find the Claude icon in the system tray, near the clock at the
-bottom-right of your screen — you may need to click the small arrow to reveal
-hidden icons. Right-click it, choose **Quit**, then open Claude again from the
-Start menu.
+That step exists for a real reason. Claude keeps its settings in memory and
+rewrites the whole settings file every time you change a preference, so an entry
+added while Claude is running is discarded a few minutes later, with nothing to
+tell you it happened. Closing Claude first is the only way to make it stick.
 
-**On a Mac,** right-click the Claude icon in the Dock and choose **Quit**, or
-press Cmd+Q with Claude in front. Then open it again.
-
-**Nearly every report of "it didn't work" turns out to be this step.** Claude
-only notices the new connection when it starts up fresh.
+**If the installer says it could not close Claude,** quit it yourself — Cmd+Q on
+a Mac, or right-click the system-tray icon and choose **Quit** on Windows — and
+run the installer again. It deliberately writes nothing in that case, because
+what it wrote would not last.
 
 ## Check it worked
 
@@ -83,8 +83,17 @@ Ask Claude:
 > What books are available on EdTech Books?
 
 A good answer lists real titles — *BIO 180*, *Invertebrate Life*, *Advanced
-Writing*, and others. If Claude says it has no way to look that up, go back to
-step 4.
+Writing*, and others.
+
+If Claude says it has no way to look that up, check what the installer printed.
+It ends with a **Settings check** line confirming the entry was still there
+after it wrote it. If that line says the entry is missing, Claude was running
+and would not close — quit it fully and run the installer again.
+
+**If you installed v0.2.0 or earlier,** you likely hit a bug: the installer
+wrote its entry while Claude was running, and Claude discarded it minutes later.
+The program installed correctly; only the setting was lost. Download the current
+version and run it — the installer now closes Claude first.
 
 There is nothing to click and no command to remember. Ask ordinary questions
 and Claude will reach for the books when they help:
