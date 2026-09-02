@@ -6,9 +6,13 @@ search the catalogue and read any book, chapter, or page while you work.
 It **reads only**. It cannot change, publish, or delete anything on the site,
 and it touches no student data.
 
-> **This is a pilot.** Windows is the tested path. The Mac build is new and
-> has had far less use — if you are on a Mac, expect the odd rough edge and
-> please say so. Awkward moments are the point of running a pilot.
+> **This is a pilot.** Windows is the better-tested path. The Mac build is
+> newer and has had far less use — if you are on a Mac, expect the odd rough
+> edge and please say so. Awkward moments are the point of running a pilot.
+>
+> **Already installed v0.2.0?** Install the current version over it. v0.2.0 had
+> a bug that lost the setting telling Claude where the connector lives, so it
+> never appeared. Nothing needs uninstalling first.
 
 ## Install
 
@@ -90,10 +94,12 @@ It ends with a **Settings check** line confirming the entry was still there
 after it wrote it. If that line says the entry is missing, Claude was running
 and would not close — quit it fully and run the installer again.
 
-**If you installed v0.2.0 or earlier,** you likely hit a bug: the installer
-wrote its entry while Claude was running, and Claude discarded it minutes later.
-The program installed correctly; only the setting was lost. Download the current
-version and run it — the installer now closes Claude first.
+**If you installed v0.2.0 or earlier,** you hit a bug: the installer wrote its
+entry while Claude was running, and Claude discarded it minutes later. The
+program installed correctly; only the setting telling Claude where to find it
+was lost. Download the current version and run it — the installer now closes
+Claude first. See [Fixing an install from v0.2.0](#fixing-an-install-from-v020)
+if you would rather repair it by hand.
 
 There is nothing to click and no command to remember. Ask ordinary questions
 and Claude will reach for the books when they help:
@@ -141,6 +147,50 @@ it, since it is unsigned. Check the quarantine list, or ask IT to allow it.
 **Still stuck.** [Open an issue](../../issues) describing what you saw —
 especially anything the installer window printed. This is a pilot, and awkward
 moments are the point of running one.
+
+## Fixing an install from v0.2.0
+
+Installing the current version over it is the easy fix, and the one to prefer.
+These steps are here for anyone who would rather repair it by hand.
+
+The program installed correctly. What went missing is the entry in Claude's
+settings telling it where the program lives.
+
+1. **Quit Claude completely.** Cmd+Q on a Mac; right-click the system-tray icon
+   and choose **Quit** on Windows. This matters — editing the file while Claude
+   is running is what caused the problem in the first place.
+2. Open Claude's settings file in a text editor:
+   - **Mac** — `~/Library/Application Support/Claude/claude_desktop_config.json`
+   - **Windows** — `%APPDATA%Claudeclaude_desktop_config.json`
+3. Add the `byui-books` entry inside `mcpServers`, leaving everything else in
+   the file alone:
+
+   ```json
+   {
+     "mcpServers": {
+       "byui-books": {
+         "command": "PUT THE PATH BELOW HERE",
+         "args": []
+       }
+     }
+   }
+   ```
+
+   The path is `/Users/YOURNAME/Library/Application Support/byui-books-mcp/byui-books-mcp`
+   on a Mac, or `C:UsersYOURNAMEAppDataLocalyui-books-mcpyui-books-mcp.exe`
+   on Windows. Write it out in full — a `~` shortcut will not work here.
+
+4. Save, then open Claude.
+
+**On a Mac, one extra step may be needed.** Files downloaded through a browser
+carry a flag that can stop macOS running them, and v0.2.0 did not clear it. In
+Terminal:
+
+```sh
+xattr -d com.apple.quarantine ~/Library/Application Support/byui-books-mcp/byui-books-mcp
+```
+
+It prints nothing if the flag was already gone, which is fine.
 
 ## Updating and removing it
 
