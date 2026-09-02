@@ -6,31 +6,54 @@ search the catalogue and read any book, chapter, or page while you work.
 It **reads only**. It cannot change, publish, or delete anything on the site,
 and it touches no student data.
 
-> **This is a pilot.** Windows only for now; macOS is being tested and will
-> follow. If something goes wrong, that is useful — please say so.
+> **This is a pilot.** Windows is the tested path. The Mac build is new and
+> has had far less use — if you are on a Mac, expect the odd rough edge and
+> please say so. Awkward moments are the point of running a pilot.
 
 ## Install
 
-**[Download `byui-books-mcp.exe` from the latest release →](../../releases/latest)**
+**[Download from the latest release →](../../releases/latest)**
+
+| Your computer | File to download |
+| --- | --- |
+| Windows | `byui-books-mcp.exe` |
+| Mac (Apple Silicon: M1/M2/M3/M4) | `byui-books-mcp.command` |
 
 You need Claude Desktop installed and opened at least once. If you also use
 Claude Code, it will be set up automatically. Nothing else is required — the
-file is entirely self-contained, about 86 MB.
+file is entirely self-contained, about 86 MB on Windows and 62 MB on a Mac.
+
+There is no Intel Mac build. If you have one, get in touch.
 
 ### 1. Download the file
 
 Your browser may warn that the file is not commonly downloaded. Choose
 **Keep** — you may need the **…** menu beside the warning to find it.
 
-### 2. Double-click it
+### 2. Open it
+
+**On Windows,** double-click it.
 
 Windows shows a blue box reading *"Windows protected your PC."* Click
 **More info**, then **Run anyway**.
 
-Both warnings appear because this program has not been signed with a paid
+**On a Mac,** there is one command first, because downloaded files arrive
+without permission to run.
+
+1. Open **Terminal** (press Cmd+Space, type "Terminal").
+2. Type `chmod +x` followed by a space, then drag `byui-books-mcp.command`
+   from your Downloads folder onto the Terminal window — that fills in its
+   location for you. Press **Enter**. Nothing visible happens, which is right.
+3. Now **right-click** the file in Finder and choose **Open**. Do not just
+   double-click it; the first time, that gives a dead end with no way through.
+4. If macOS still refuses, open **System Settings → Privacy & Security**,
+   scroll down to the message about `byui-books-mcp`, and click
+   **Open Anyway**. Then repeat step 3.
+
+These warnings appear because this program has not been signed with a paid
 commercial certificate. That is a statement about paperwork, not about safety —
-Windows shows the same warning for any unsigned program. If you would rather
-not click through it, get in touch and we will set you up another way.
+both systems show the same warning for any unsigned program. If you would
+rather not click through it, get in touch and we will set you up another way.
 
 ### 3. Let it finish
 
@@ -42,9 +65,13 @@ not a freeze.
 
 Closing the Claude window is **not** enough. It keeps running in the background.
 
-Find the Claude icon in the system tray, near the clock at the bottom-right of
-your screen — you may need to click the small arrow to reveal hidden icons.
-Right-click it, choose **Quit**, then open Claude again from the Start menu.
+**On Windows,** find the Claude icon in the system tray, near the clock at the
+bottom-right of your screen — you may need to click the small arrow to reveal
+hidden icons. Right-click it, choose **Quit**, then open Claude again from the
+Start menu.
+
+**On a Mac,** right-click the Claude icon in the Dock and choose **Quit**, or
+press Cmd+Q with Claude in front. Then open it again.
 
 **Nearly every report of "it didn't work" turns out to be this step.** Claude
 only notices the new connection when it starts up fresh.
