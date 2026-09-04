@@ -1,7 +1,11 @@
 # EdTech Books Connector
 
-Connects Claude directly to [EdTech Books](https://books.byui.edu), so it can
+Connects Claude directly to [EdTech Books](https://edtechbooks.org), so it can
 search the catalogue and read any book, chapter, or page while you work.
+
+It works with **any EdTech Books site** — [books.byui.edu](https://books.byui.edu),
+[edtechbooks.org](https://edtechbooks.org), or another instance. The installer
+asks which one you want.
 
 It **reads only**. It cannot change, publish, or delete anything on the site,
 and it touches no student data.
@@ -10,9 +14,10 @@ and it touches no student data.
 > newer and has had far less use — if you are on a Mac, expect the odd rough
 > edge and please say so. Awkward moments are the point of running a pilot.
 >
-> **Already installed v0.2.0?** Install the current version over it. v0.2.0 had
-> a bug that lost the setting telling Claude where the connector lives, so it
-> never appeared. Nothing needs uninstalling first.
+> **Already have an earlier version?** Install the current one over it. Nothing
+> needs uninstalling first, and the installer tidies up the old entry itself.
+> See [Upgrading from an earlier version](#upgrading-from-an-earlier-version)
+> for what changed.
 
 ## Install
 
@@ -59,13 +64,36 @@ commercial certificate. That is a statement about paperwork, not about safety �
 both systems show the same warning for any unsigned program. If you would
 rather not click through it, get in touch and we will set you up another way.
 
-### 3. Let it finish
+### 3. Choose your site
 
-A window opens and lists what it set up. It waits for you — press **Enter** to
-close it. If it seems to sit there doing nothing, that is the window waiting,
-not a freeze.
+The installer asks which EdTech Books site to connect to:
 
-### 4. Nothing — Claude restarts itself
+```
+Which EdTech Books site should this connect to?
+
+  1. BYU-Idaho  (https://books.byui.edu)
+  2. EdTech Books  (https://edtechbooks.org)
+  3. Something else -- type the address
+
+Enter 1-3, or paste a site address:
+```
+
+Type **1** or **2** and press Enter. For any other instance, type its address —
+`example.edu` is enough, you do not need the `https://`.
+
+There is no default here on purpose. EdTech Books runs several sites, and
+picking one for you would quietly decide whose books you are reading. If you
+pick nothing, the installer stops without changing anything.
+
+You can change your mind later by running the installer again.
+
+### 4. Let it finish
+
+A window lists what it set up. It waits for you — press **Enter** to close it.
+If it seems to sit there doing nothing, that is the window waiting, not a
+freeze.
+
+### 5. Nothing — Claude restarts itself
 
 If Claude was open, the installer closes it before changing its settings and
 opens it again when it is done. You do not have to quit anything.
@@ -86,20 +114,12 @@ Ask Claude:
 
 > What books are available on EdTech Books?
 
-A good answer lists real titles — *BIO 180*, *Invertebrate Life*, *Advanced
-Writing*, and others.
+A good answer lists real titles from the site you chose.
 
 If Claude says it has no way to look that up, check what the installer printed.
 It ends with a **Settings check** line confirming the entry was still there
 after it wrote it. If that line says the entry is missing, Claude was running
 and would not close — quit it fully and run the installer again.
-
-**If you installed v0.2.0 or earlier,** you hit a bug: the installer wrote its
-entry while Claude was running, and Claude discarded it minutes later. The
-program installed correctly; only the setting telling Claude where to find it
-was lost. Download the current version and run it — the installer now closes
-Claude first. See [Fixing an install from v0.2.0](#fixing-an-install-from-v020)
-if you would rather repair it by hand.
 
 There is nothing to click and no command to remember. Ask ordinary questions
 and Claude will reach for the books when they help:
@@ -107,6 +127,8 @@ and Claude will reach for the books when they help:
 > Pull up the table of contents for Invertebrate Life.
 >
 > Read me the review questions from chapter 24 and tell me what they miss.
+>
+> Find where this book explains outer joins.
 
 ## Where things went
 
@@ -115,18 +137,17 @@ Two separate things happened, and it helps to keep them apart.
 **The program.** One file, copied somewhere permanent so the download becomes
 disposable:
 
-```
-C:\Users\<you>\AppData\Local\byui-books-mcp\
-```
+- **Windows** — `C:\Users\<you>\AppData\Local\byui-books-mcp\`
+- **Mac** — `~/Library/Application Support/byui-books-mcp/`
 
 That single file is the whole thing. There is no folder of parts to look after,
 and nothing was added to Claude's own program folder.
 
 **A note telling Claude where it is.** Claude has to be told where that file
-lives, so one entry named `byui-books` was added to Claude's settings. The
-first time only, your original settings were saved alongside as
-`claude_desktop_config.json.bak`. Any other connections you already had were
-left alone.
+lives, so one entry named `edtech-books` was added to Claude's settings, along
+with the site you chose. The first time only, your original settings were saved
+alongside as `claude_desktop_config.json.bak`. Any other connections you already
+had were left alone.
 
 That entry is only a location, not a second copy of the program. When you ask
 about a book, Claude reads the location, starts the program, and puts the
@@ -141,6 +162,13 @@ restarted. Quit it from the system tray, not the window, and reopen.
 or it is installed but has never been opened. Launch Claude Desktop once, quit
 it, then run the installer again.
 
+**The installer said no site was chosen.** It needs to know which EdTech Books
+site to use and will not guess. Run it again and pick one.
+
+**Claude finds the connector but every question fails.** Check the site is
+right — run the installer again and choose. If you pointed it at an address
+that is not an EdTech Books site, nothing will answer.
+
 **Nothing happened when you ran the file.** Your antivirus may have quarantined
 it, since it is unsigned. Check the quarantine list, or ask IT to allow it.
 
@@ -148,46 +176,61 @@ it, since it is unsigned. Check the quarantine list, or ask IT to allow it.
 especially anything the installer window printed. This is a pilot, and awkward
 moments are the point of running one.
 
-## Fixing an install from v0.2.0
+## Upgrading from an earlier version
 
-Installing the current version over it is the easy fix, and the one to prefer.
-These steps are here for anyone who would rather repair it by hand.
+**Just run the current installer.** It replaces the program, asks which site to
+use, and removes the old settings entry for you.
 
-The program installed correctly. What went missing is the entry in Claude's
-settings telling it where the program lives.
+Two things changed in v0.4.0 that matter if you installed anything earlier:
 
-1. **Quit Claude completely.** Cmd+Q on a Mac; right-click the system-tray icon
-   and choose **Quit** on Windows. This matters — editing the file while Claude
-   is running is what caused the problem in the first place.
-2. Open Claude's settings file in a text editor:
-   - **Mac** — `~/Library/Application Support/Claude/claude_desktop_config.json`
-   - **Windows** — `%APPDATA%Claudeclaude_desktop_config.json`
-3. Add the `byui-books` entry inside `mcpServers`, leaving everything else in
-   the file alone:
+- **The settings entry was renamed** from `byui-books` to `edtech-books`, because
+  the connector works with every EdTech Books site rather than one of them. The
+  installer removes the old entry; left behind it would sit there pointing at a
+  program that no longer runs.
+- **The site is now recorded explicitly.** Earlier versions always used
+  books.byui.edu. The installer asks, and writes your answer into the settings
+  entry.
 
-   ```json
-   {
-     "mcpServers": {
-       "byui-books": {
-         "command": "PUT THE PATH BELOW HERE",
-         "args": []
-       }
-     }
-   }
-   ```
+**An earlier install will stop working until you re-run the installer.** That is
+expected, and re-running is the whole fix.
 
-   The path is `/Users/YOURNAME/Library/Application Support/byui-books-mcp/byui-books-mcp`
-   on a Mac, or `C:UsersYOURNAMEAppDataLocalyui-books-mcpyui-books-mcp.exe`
-   on Windows. Write it out in full — a `~` shortcut will not work here.
+If you would rather repair it by hand, quit Claude completely first — editing
+the file while Claude is running is what causes entries to vanish — then open:
 
-4. Save, then open Claude.
+- **Mac** — `~/Library/Application Support/Claude/claude_desktop_config.json`
+- **Windows** — `%APPDATA%\Claude\claude_desktop_config.json`
+
+Remove any `byui-books` entry, and add this inside `mcpServers`, leaving
+everything else alone:
+
+```json
+{
+  "mcpServers": {
+    "edtech-books": {
+      "command": "PUT THE PATH BELOW HERE",
+      "args": [],
+      "env": { "BOOKS_BASE_URL": "https://books.byui.edu" }
+    }
+  }
+}
+```
+
+Set `BOOKS_BASE_URL` to the site you want. The program path is:
+
+- **Mac** — `/Users/YOURNAME/Library/Application Support/byui-books-mcp/byui-books-mcp`
+- **Windows** — `C:\Users\YOURNAME\AppData\Local\byui-books-mcp\byui-books-mcp.exe`
+
+Write the path out in full — a `~` shortcut will not work here. On Windows, the
+backslashes must be doubled in JSON: `C:\\Users\\YOURNAME\\...`.
+
+Save, then open Claude.
 
 **On a Mac, one extra step may be needed.** Files downloaded through a browser
-carry a flag that can stop macOS running them, and v0.2.0 did not clear it. In
-Terminal:
+carry a flag that can stop macOS running them, and versions before v0.3.0 did
+not clear it. In Terminal:
 
 ```sh
-xattr -d com.apple.quarantine ~/Library/Application Support/byui-books-mcp/byui-books-mcp
+xattr -d com.apple.quarantine ~/Library/Application\ Support/byui-books-mcp/byui-books-mcp
 ```
 
 It prints nothing if the flag was already gone, which is fine.
@@ -197,8 +240,11 @@ It prints nothing if the flag was already gone, which is fine.
 **A newer version.** Quit Claude Desktop first, then run the new file the same
 way. If you forget, the installer says so and leaves your working setup alone.
 
+**Changing which site it uses.** Run the installer again and pick a different
+one.
+
 **Removing it.** Quit Claude Desktop, then delete the folder above. Then remove
-the `byui-books` entry from Claude's settings, leaving the rest of the file
+the `edtech-books` entry from Claude's settings, leaving the rest of the file
 alone. Nothing else is left behind.
 
 Don't replace the whole settings file with the `.bak` copy unless you are sure
@@ -207,14 +253,20 @@ you may have added.
 
 ## What it can do
 
-Thirteen read-only tools, covering the catalogue and its contents:
+Fourteen read-only tools, covering the catalogue and its contents:
 
 | | |
 | --- | --- |
-| Find things | Search books, chapters, pages and authors; search keywords |
+| Find things | Search books, chapters, pages and authors by title; search keywords |
+| Search inside a book | Find a phrase in a book's chapters, with an excerpt of each match |
 | Books | List the catalogue, read a book's contents and its glossary |
 | Read | Fetch any chapter or page by id, or resolve one from its web address |
 | Authors | Read an author's public profile and the books they have written |
+
+Searching **by title** and searching **inside a book** are different tools, and
+the difference catches people out. A phrase from the middle of a chapter will
+not be found by the catalogue search — ask about a book by name first, then
+search within it.
 
 ## About
 
