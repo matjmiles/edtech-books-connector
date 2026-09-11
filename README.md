@@ -28,9 +28,12 @@ and it touches no student data.
 | Windows | `byui-books-mcp.exe` |
 | Mac (Apple Silicon: M1/M2/M3/M4) | `byui-books-mcp.command` |
 
-You need Claude Desktop installed and opened at least once. If you also use
-Claude Code, it will be set up automatically. Nothing else is required — the
-file is entirely self-contained, about 86 MB on Windows and 62 MB on a Mac.
+**You need at least one of Claude Desktop or Claude Code**, and the installer
+sets up whichever it finds — both, if you have both. You do not need Claude
+Desktop if you work in Claude Code; see
+[Using it with Claude Code](#using-it-with-claude-code). Nothing else is
+required — the file is entirely self-contained, about 86 MB on Windows and
+62 MB on a Mac.
 
 There is no Intel Mac build. If you have one, get in touch.
 
@@ -129,6 +132,86 @@ and Claude will reach for the books when they help:
 > Read me the review questions from chapter 24 and tell me what they miss.
 >
 > Find where this book explains outer joins.
+
+## Using it with Claude Code
+
+**Claude Code in VS Code needs no separate setup.** The installer registers the
+connector with Claude Code at *user scope*, which means one registration covers
+every way you run it:
+
+- Claude Code in **VS Code**
+- Claude Code in a **terminal**
+- Claude Code inside the **Claude Desktop** app
+- Claude Code in **JetBrains** IDEs
+
+It also covers every folder you open. You do not register it per project, and
+you do not need a `.vscode/mcp.json` — that file is for VS Code's own MCP
+support, which is a different thing from Claude Code and does not read this.
+
+**You do not need Claude Desktop.** If you only use Claude Code, the installer
+prints `Claude Desktop not found -- skipped.` and finishes normally. That line
+is information, not a failure.
+
+### Making it appear
+
+**Claude Code reads its connector list once, at startup.** So after installing:
+
+1. Close VS Code completely — every window, not just the Claude panel.
+2. Open it again.
+3. Start a new Claude Code conversation.
+
+An existing conversation will not pick it up, which is the single most common
+reason someone thinks the install failed.
+
+### Checking it worked
+
+In a Claude Code conversation, type:
+
+```
+/mcp
+```
+
+You should see **edtech-books** listed as connected. Or just ask a question and
+watch what happens:
+
+> What books are available on EdTech Books?
+
+If you have a terminal handy, this lists every registered connector and whether
+each one is answering:
+
+```sh
+claude mcp list
+```
+
+Look for `edtech-books: ... ✔ Connected`.
+
+### If it does not appear
+
+**Check you restarted.** Genuinely the usual cause. A new conversation in an
+already-open window is not enough — VS Code has to start again.
+
+**Look for an older entry fighting it.** If you registered a copy by hand at
+any point, an out-of-date entry may still be there and failing. List them:
+
+```sh
+claude mcp list
+```
+
+Anything named `byui-books` is from before the connector was renamed, and will
+not start. Remove it:
+
+```sh
+claude mcp remove byui-books --scope user
+```
+
+If a stale entry was added for one project rather than globally, `claude mcp
+list` shows it while you have that folder open, and removing it needs
+`--scope local` instead. A failing entry is harmless beyond the error message,
+but it is worth clearing so a real failure is not hidden among them.
+
+**Check the binary is still where it was installed.** The registration records
+a path. If you moved or deleted the downloaded file after installing, run the
+installer again — it is safe to re-run and refreshes the path.
 
 ## Where things went
 
