@@ -62,6 +62,12 @@ without permission to run.
    scroll down to the message about `byui-books-mcp`, and click
    **Open Anyway**. Then repeat step 3.
 
+**On a Mac and stuck at any of that?** The
+[full Mac installation guide](MAC-INSTALL.md) walks through every point macOS
+can stop you, with the exact command for each — including a one-line Terminal
+alternative to the Privacy & Security step, and how to tell an Apple Silicon
+Mac from an Intel one, which this build does not support.
+
 These warnings appear because this program has not been signed with a paid
 commercial certificate. That is a statement about paperwork, not about safety —
 both systems show the same warning for any unsigned program. If you would
@@ -254,6 +260,10 @@ that is not an EdTech Books site, nothing will answer.
 
 **Nothing happened when you ran the file.** Your antivirus may have quarantined
 it, since it is unsigned. Check the quarantine list, or ask IT to allow it.
+
+**On a Mac?** Work through the [full Mac installation guide](MAC-INSTALL.md)
+before opening an issue — it covers the quarantine flag, the
+right-click-not-double-click step, and the Apple Silicon requirement.
 
 **Still stuck.** [Open an issue](../../issues) describing what you saw —
 especially anything the installer window printed. This is a pilot, and awkward
