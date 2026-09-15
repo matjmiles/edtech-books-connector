@@ -260,6 +260,16 @@ that is not an EdTech Books site, nothing will answer.
 
 **Nothing happened when you ran the file.** Your antivirus may have quarantined
 it, since it is unsigned. Check the quarantine list, or ask IT to allow it.
+On **Windows**, you can also force the installer to run. Open a terminal in the
+folder holding the file and run:
+
+```powershell
+.\byui-books-mcp.exe --install
+```
+
+The `.\` prefix is required in PowerShell. This helps when double-clicking
+appears to do nothing at all: the installer normally decides for itself whether
+a person launched it or Claude did, and this setting removes the guess.
 
 **On a Mac?** Work through the [full Mac installation guide](MAC-INSTALL.md)
 before opening an issue — it covers the quarantine flag, the
