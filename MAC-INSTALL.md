@@ -27,7 +27,7 @@ describe, it is more likely the build than your setup. Please say so.
 
 ## 1. Download it
 
-Take **`byui-books-mcp.command`** from the
+Take **`byui-books-mcp-mac.zip`** from the
 [latest release](https://github.com/matjmiles/edtech-books-connector/releases/latest).
 
 Not the `.exe` — that one is Windows.
@@ -39,36 +39,19 @@ the warning. Choose **Keep**. Safari usually downloads it without comment.
 This happens before macOS has said anything at all. It is the browser reacting
 to an unsigned file.
 
-## 2. Give it permission to run
+## 2. Unpack it
 
-Files arriving through a browser have no permission to run. One command fixes
-that.
+**Double-click the zip.** You get `byui-books-mcp.command` beside it.
 
-Open **Terminal** — press **Cmd+Space**, type `Terminal`, press Enter.
-
-Then type this, **with a space after `+x`**, and don't press Enter yet:
-
-```sh
-chmod +x 
-```
-
-Now **drag `byui-books-mcp.command` from your Downloads folder onto the Terminal
-window.** That fills in the file's location for you. *Now* press Enter.
-
-Nothing visible happens. That is correct — the command succeeds silently.
-
-> **Why drag it instead of typing the path?** Because dragging works wherever
-> the file is, and copes with spaces in folder names. If you know the file is in
-> Downloads and you would rather type it, this is the same thing:
->
-> ```sh
-> chmod +x ~/Downloads/byui-books-mcp.command
-> ```
+That is the whole step. It used to be a Terminal command, and it no longer
+needs to be: a program downloaded straight through a browser arrives without
+permission to run, but a zip carries that permission and macOS restores it when
+it unpacks. The file comes out ready.
 
 ## 3. Open it — right-click, not double-click
 
-In **Finder**, **right-click** (or Control-click) `byui-books-mcp.command` and
-choose **Open**.
+In **Finder**, **right-click** (or Control-click) the unpacked
+`byui-books-mcp.command` and choose **Open**.
 
 **Do not double-click it.** The first time, double-clicking gives a dead end:
 macOS refuses and offers no way to continue. Right-clicking and choosing Open
@@ -96,8 +79,9 @@ xattr -d com.apple.quarantine ~/Downloads/byui-books-mcp.command
 It prints nothing if the flag was already gone, which is fine. Then
 double-clicking works normally.
 
-If the file is not in Downloads, use the drag trick from step 2: type
-`xattr -d com.apple.quarantine ` (with the trailing space) and drag the file on.
+If the file is not in Downloads, type `xattr -d com.apple.quarantine `
+with a trailing space and drag the file onto the Terminal window — that fills
+in its location wherever it is, and copes with spaces in folder names.
 
 ## 4. Answer two questions
 
@@ -175,8 +159,8 @@ xattr -d com.apple.quarantine ~/Library/Application\ Support/byui-books-mcp/byui
 
 Note the backslash before the space in `Application Support` — it is required.
 
-You should not need to `chmod` that copy. It inherits permission to run from the
-file you fixed in step 2.
+You should not need to `chmod` that copy. It inherits permission to run from
+the file you unzipped, which carried it out of the archive.
 
 **Still stuck.** [Open an issue](https://github.com/matjmiles/edtech-books-connector/issues)
 describing what you saw, and paste anything the installer window printed. This
