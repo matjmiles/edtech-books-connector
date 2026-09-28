@@ -27,7 +27,7 @@ describe, it is more likely the build than your setup. Please say so.
 
 ## 1. Download it
 
-Take **`byui-books-mcp-mac.zip`** from the
+Take **`edtechbooks-claude-local-mac.zip`** from the
 [latest release](https://github.com/matjmiles/edtech-books-connector/releases/latest).
 
 Not the `.exe` — that one is Windows.
@@ -41,7 +41,7 @@ to an unsigned file.
 
 ## 2. Unpack it
 
-**Double-click the zip.** You get `byui-books-mcp.command` beside it.
+**Double-click the zip.** You get `edtechbooks-claude-local.command` beside it.
 
 That is the whole step. It used to be a Terminal command, and it no longer
 needs to be: a program downloaded straight through a browser arrives without
@@ -51,7 +51,7 @@ it unpacks. The file comes out ready.
 ## 3. Open it — right-click, not double-click
 
 In **Finder**, **right-click** (or Control-click) the unpacked
-`byui-books-mcp.command` and choose **Open**.
+`edtechbooks-claude-local.command` and choose **Open**.
 
 **Do not double-click it.** The first time, double-clicking gives a dead end:
 macOS refuses and offers no way to continue. Right-clicking and choosing Open
@@ -67,13 +67,13 @@ Two ways through. Either works.
 
 **The clicking route.** Open **System Settings → Privacy & Security**, scroll
 down — it is below the list of permissions — and click **Open Anyway** next to
-the message about `byui-books-mcp`. Then repeat the right-click → Open above.
+the message about `edtechbooks-claude-local`. Then repeat the right-click → Open above.
 
 **The Terminal route.** This removes the "downloaded from the internet" flag
 that Gatekeeper is reacting to:
 
 ```sh
-xattr -d com.apple.quarantine ~/Downloads/byui-books-mcp.command
+xattr -d com.apple.quarantine ~/Downloads/edtechbooks-claude-local.command
 ```
 
 It prints nothing if the flag was already gone, which is fine. Then
