@@ -23,10 +23,24 @@ and it touches no student data.
 
 **[Download from the latest release →](../../releases/latest)**
 
+### Which download do you need?
+
+There are three, and each name says which assistant it is for and whether
+anything is hosted.
+
+| If you use... | and you want... | download |
+| --- | --- | --- |
+| **Claude** | it to run on **your own computer** | `edtechbooks-claude-local` — **this page** |
+| **Claude** | it to use the **hosted** EdTech Books server | [`edtechbooks-claude-hosted`](https://github.com/matjmiles/edtech-books-connector/releases/tag/claude-hosted-v1.0.0) |
+| **ChatGPT** | to connect at all | [`edtechbooks-chatgpt-hosted`](https://github.com/matjmiles/edtech-books-connector/releases/tag/chatgpt-hosted-v1.0.1) |
+
+Only the first installs anything; the other two save a setting and are done.
+**The rest of this page is about the first one.**
+
 | Your computer | File to download |
 | --- | --- |
-| Windows | `byui-books-mcp.exe` |
-| Mac (Apple Silicon: M1/M2/M3/M4) | `byui-books-mcp-mac.zip` |
+| Windows | `edtechbooks-claude-local.exe` |
+| Mac (Apple Silicon: M1/M2/M3/M4) | `edtechbooks-claude-local-mac.zip` |
 
 **You need at least one of Claude Desktop or Claude Code**, and the installer
 sets up whichever it finds — both, if you have both. You do not need Claude
@@ -51,11 +65,11 @@ Windows shows a blue box reading *"Windows protected your PC."* Click
 
 **On a Mac,** no Terminal is needed.
 
-1. **Double-click the zip.** You get `byui-books-mcp.command` beside it.
+1. **Double-click the zip.** You get `edtechbooks-claude-local.command` beside it.
 2. **Right-click that file** in Finder and choose **Open**. Do not just
    double-click it; the first time, that gives a dead end with no way through.
 3. If macOS still refuses, open **System Settings → Privacy & Security**,
-   scroll down to the message about `byui-books-mcp`, and click
+   scroll down to the message about `edtechbooks-claude-local`, and click
    **Open Anyway**. Then repeat step 2.
 
 Step 2 is macOS refusing to run software that is not signed with a paid Apple
@@ -263,7 +277,7 @@ On **Windows**, you can also force the installer to run. Open a terminal in the
 folder holding the file and run:
 
 ```powershell
-.\byui-books-mcp.exe --install
+.\edtechbooks-claude-local.exe --install
 ```
 
 The `.\` prefix is required in PowerShell. This helps when double-clicking
