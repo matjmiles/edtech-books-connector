@@ -26,14 +26,14 @@ and it touches no student data.
 | Your computer | File to download |
 | --- | --- |
 | Windows | `byui-books-mcp.exe` |
-| Mac (Apple Silicon: M1/M2/M3/M4) | `byui-books-mcp.command` |
+| Mac (Apple Silicon: M1/M2/M3/M4) | `byui-books-mcp-mac.zip` |
 
 **You need at least one of Claude Desktop or Claude Code**, and the installer
 sets up whichever it finds — both, if you have both. You do not need Claude
 Desktop if you work in Claude Code; see
 [Using it with Claude Code](#using-it-with-claude-code). Nothing else is
 required — the file is entirely self-contained, about 86 MB on Windows and
-62 MB on a Mac.
+26 MB zipped on a Mac.
 
 There is no Intel Mac build. If you have one, get in touch.
 
@@ -49,24 +49,23 @@ Your browser may warn that the file is not commonly downloaded. Choose
 Windows shows a blue box reading *"Windows protected your PC."* Click
 **More info**, then **Run anyway**.
 
-**On a Mac,** there is one command first, because downloaded files arrive
-without permission to run.
+**On a Mac,** no Terminal is needed.
 
-1. Open **Terminal** (press Cmd+Space, type "Terminal").
-2. Type `chmod +x` followed by a space, then drag `byui-books-mcp.command`
-   from your Downloads folder onto the Terminal window — that fills in its
-   location for you. Press **Enter**. Nothing visible happens, which is right.
-3. Now **right-click** the file in Finder and choose **Open**. Do not just
+1. **Double-click the zip.** You get `byui-books-mcp.command` beside it.
+2. **Right-click that file** in Finder and choose **Open**. Do not just
    double-click it; the first time, that gives a dead end with no way through.
-4. If macOS still refuses, open **System Settings → Privacy & Security**,
+3. If macOS still refuses, open **System Settings → Privacy & Security**,
    scroll down to the message about `byui-books-mcp`, and click
-   **Open Anyway**. Then repeat step 3.
+   **Open Anyway**. Then repeat step 2.
+
+Step 2 is macOS refusing to run software that is not signed with a paid Apple
+certificate. It applies to anything from outside the App Store.
 
 **On a Mac and stuck at any of that?** The
 [full Mac installation guide](MAC-INSTALL.md) walks through every point macOS
-can stop you, with the exact command for each — including a one-line Terminal
-alternative to the Privacy & Security step, and how to tell an Apple Silicon
-Mac from an Intel one, which this build does not support.
+can stop you — including a one-line Terminal alternative to the Privacy &
+Security step, and how to tell an Apple Silicon Mac from an Intel one, which
+this build does not support.
 
 These warnings appear because this program has not been signed with a paid
 commercial certificate. That is a statement about paperwork, not about safety —
